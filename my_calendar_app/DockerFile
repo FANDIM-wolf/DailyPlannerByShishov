@@ -1,0 +1,21 @@
+
+# Base image
+FROM node:14-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all files from the "public" directory to the container
+COPY public/ public/
+
+# Copy the rest of the application to the container
+COPY . .
+
+# Specify the command to run your application
+CMD ["npm", "start"]
